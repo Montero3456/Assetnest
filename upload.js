@@ -13,7 +13,7 @@ uploadButton.addEventListener("click", async () => {
     if (!title || !description || !file) {
 
         uploadStatus.textContent =
-            "Please fill in all fields and select a file.";
+            "Please complete all fields.";
 
         return;
 
@@ -21,18 +21,51 @@ uploadButton.addEventListener("click", async () => {
 
 
     uploadStatus.textContent =
-        "Preparing upload...";
+        "Uploading file...";
+
+
+    const fileName =
+        `${Date.now()}-${file.name}`;
+
+
+    const { data, error } =
+        await supabaseClient
+            .storage
+            .from("assets")
+            .upload(fileName, file);
+
+
+
+    if (error) {
+
+        console.error(error);
+
+        uploadStatus.textContent =
+            "Upload failed.";
+
+        return;
+
+    }
+
+
+    const { data: urlData } =
+        supabaseClient
+            .storage
+            .from("assets")
+            .getPublicUrl(fileName);
+
 
 
     console.log({
         title,
         description,
         category,
-        fileName: file.name
+        fileUrl: urlData.publicUrl
     });
 
 
     uploadStatus.textContent =
-        "Upload system ready!";
+        "File uploaded successfully!";
+
 
 });
