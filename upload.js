@@ -4,35 +4,49 @@ const uploadStatus = document.getElementById("uploadStatus");
 
 uploadButton.addEventListener("click", async () => {
 
-    const title = document.getElementById("assetTitle").value;
-    const description = document.getElementById("assetDescription").value;
+    const title = document.getElementById("assetTitle").value.trim();
+    const description = document.getElementById("assetDescription").value.trim();
     const category = document.getElementById("assetCategory").value;
     const file = document.getElementById("assetFile").files[0];
 
 
-    if (!title || !description || !file) {
+    console.log("Upload started");
+
+    console.log({
+        title,
+        description,
+        category,
+        file
+    });
+
+
+    if (!title || !file) {
 
         uploadStatus.textContent =
-            "Please fill out all fields and choose a file.";
+            "Please add a title and choose a file.";
 
         return;
 
     }
 
 
-    uploadStatus.textContent =
-        "Uploading file...";
-
-
     try {
 
-        // Create unique file name
+        uploadStatus.textContent =
+            "Uploading file...";
+
+
+        // Create unique filename
         const fileName =
             `${Date.now()}-${file.name}`;
 
 
-        // Upload file to Supabase Storage
-        const { data: storageData, error: storageError } =
+        console.log("Uploading to Storage:", fileName);
+
+
+
+        // Upload file to Storage
+        const { error: storageError } =
             await supabaseClient
                 .storage
                 .from("assets")
@@ -42,14 +56,22 @@ uploadButton.addEventListener("click", async () => {
 
         if (storageError) {
 
+            console.error(
+                "Storage Error:",
+                storageError
+            );
+
             throw storageError;
 
         }
 
 
+        console.log("Storage upload complete");
 
-        // Get public download URL
-        const { data: urlData } =
+
+
+        // Get public URL
+        const { data: publicURL } =
             supabaseClient
                 .storage
                 .from("assets")
@@ -57,16 +79,27 @@ uploadButton.addEventListener("click", async () => {
 
 
 
-        const fileUrl = urlData.publicUrl;
+        const fileUrl =
+            publicURL.publicUrl;
+
+
+        console.log(
+            "File URL:",
+            fileUrl
+        );
 
 
 
-        // Save asset information to database
-        const { error: databaseError } =
+        uploadStatus.textContent =
+            "Saving asset information...";
+
+
+
+        // Insert into database
+        const { data, error: databaseError } =
             await supabaseClient
                 .from("assets")
                 .insert([
-
                     {
                         title: title,
                         description: description,
@@ -74,8 +107,21 @@ uploadButton.addEventListener("click", async () => {
                         file_url: fileUrl,
                         file_name: fileName
                     }
+                ])
+                .select();
 
-                ]);
+
+
+        console.log(
+            "Database response:",
+            data
+        );
+
+
+        console.log(
+            "Database error:",
+            databaseError
+        );
 
 
 
@@ -91,6 +137,12 @@ uploadButton.addEventListener("click", async () => {
             "Upload successful!";
 
 
+        console.log(
+            "Asset uploaded successfully"
+        );
+
+
+
         // Clear form
         document.getElementById("assetTitle").value = "";
         document.getElementById("assetDescription").value = "";
@@ -99,7 +151,11 @@ uploadButton.addEventListener("click", async () => {
 
     } catch (error) {
 
-        console.error(error);
+
+        console.error(
+            "UPLOAD FAILED:",
+            error
+        );
 
 
         uploadStatus.textContent =
