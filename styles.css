@@ -3,31 +3,54 @@
     src: url("./fonts/BlockCraft.otf") format("opentype");
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
+
+/* RESET */
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "BlockCraft", Arial, sans-serif;
 }
 
 
+/* GLOBAL */
+
 body {
+
+    font-family: "BlockCraft", Arial, sans-serif;
+
     min-height: 100vh;
 
     background:
         linear-gradient(
             135deg,
-            #eef2ff,
-            #ffffff,
-            #dbeafe
+            #eef2ff 0%,
+            #ffffff 45%,
+            #dbeafe 100%
         );
 
     color: #1e293b;
 
-    letter-spacing: 0.5px;
+    overflow-x: hidden;
+
+}
+
+
+
+a {
+    text-decoration: none;
+}
+
+
+
+button,
+input {
+
+    font-family: "BlockCraft", Arial, sans-serif;
+
 }
 
 
@@ -35,85 +58,78 @@ body {
 /* HEADER */
 
 header {
+
+    width: 100%;
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
-    padding: 28px 8%;
+    gap: 30px;
+
+    padding: 25px 7%;
 
     background:
+
         rgba(255,255,255,0.75);
+
 
     backdrop-filter: blur(20px);
 
     border-bottom:
-        1px solid rgba(0,0,0,0.05);
 
-    position: sticky;
-    top: 0;
-    z-index: 10;
+        1px solid rgba(0,0,0,0.06);
+
 }
 
 
 
 .logo {
 
-    font-size: 42px;
+    font-size: clamp(32px,4vw,52px);
 
-    color: #6366f1;
+    color:#6366f1;
 
-    text-shadow:
-        0 5px 15px rgba(99,102,241,0.25);
+    white-space: nowrap;
 
 }
 
 
-
-/* SEARCH */
 
 #search {
 
-    width: 42%;
+    flex: 1;
 
-    height: 60px;
+    max-width: 550px;
 
-    padding:
-        15px 28px;
+    height: 65px;
 
-    border: none;
+    padding: 0 30px;
 
-    outline: none;
+    border:none;
 
-    border-radius: 35px;
+    outline:none;
 
-    background: white;
+    border-radius:40px;
 
-    font-size: 22px;
+    background:white;
+
+    font-size:22px;
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,0.08);
+
+        0 10px 30px rgba(0,0,0,.08);
 
 }
 
 
 
-/* UPLOAD BUTTON */
-
 .upload-btn {
 
-    text-decoration: none;
-
-    color: white;
-
-    font-size: 24px;
-
-    padding:
-        18px 38px;
-
-    border-radius: 35px;
-
-
     background:
+
         linear-gradient(
             135deg,
             #6366f1,
@@ -121,15 +137,26 @@ header {
         );
 
 
-    transition: 0.25s;
+    color:white;
+
+    padding:
+
+        18px 35px;
+
+
+    border-radius:40px;
+
+    font-size:24px;
+
+    transition:.25s;
 
 }
 
 
+
 .upload-btn:hover {
 
-    transform:
-        translateY(-5px);
+    transform:translateY(-5px);
 
 }
 
@@ -139,10 +166,11 @@ header {
 
 .hero {
 
-    text-align: center;
+    text-align:center;
 
     padding:
-        100px 20px;
+
+        100px 20px 70px;
 
 }
 
@@ -150,12 +178,14 @@ header {
 
 .hero h1 {
 
-    font-size: 64px;
+    font-size:
 
-    line-height: 1.15;
+        clamp(45px,6vw,80px);
 
-    color:
-        #312e81;
+
+    line-height:1.15;
+
+    color:#312e81;
 
 }
 
@@ -163,12 +193,13 @@ header {
 
 .hero p {
 
-    margin-top: 25px;
+    margin-top:25px;
 
-    font-size: 26px;
+    font-size:
 
-    color:
-        #64748b;
+        clamp(20px,3vw,32px);
+
+    color:#64748b;
 
 }
 
@@ -182,9 +213,13 @@ header {
 
     justify-content:center;
 
+    align-items:center;
+
     flex-wrap:wrap;
 
     gap:20px;
+
+    padding:20px;
 
 }
 
@@ -192,27 +227,32 @@ header {
 
 .categories button {
 
-    min-width:140px;
+    min-width:150px;
 
-    padding:
-        18px 35px;
+    padding:18px 30px;
 
     border:none;
 
-    border-radius:35px;
+    border-radius:40px;
 
     background:white;
 
     cursor:pointer;
 
-    font-size:22px;
+    font-size:24px;
+
+    color:#334155;
+
 
     box-shadow:
-        0 10px 25px rgba(0,0,0,0.08);
 
-    transition:0.25s;
+        0 12px 25px rgba(0,0,0,.08);
+
+
+    transition:.25s;
 
 }
+
 
 
 .categories button:hover {
@@ -221,36 +261,35 @@ header {
 
     color:white;
 
-    transform:
-        translateY(-4px);
+    transform:translateY(-5px);
 
 }
 
 
 
-/* ASSET GRID */
+/* ASSET AREA */
 
 .asset-grid {
 
-    width:85%;
+    width:86%;
 
-    margin:
-        60px auto;
+    margin:70px auto;
 
 
     display:grid;
 
     grid-template-columns:
+
         repeat(auto-fit,minmax(300px,1fr));
 
 
-    gap:30px;
+    gap:35px;
 
 }
 
 
 
-/* ASSET CARDS */
+/* CARDS */
 
 .asset-card {
 
@@ -260,21 +299,20 @@ header {
 
     overflow:hidden;
 
-
     box-shadow:
-        0 20px 45px rgba(0,0,0,0.08);
+
+        0 20px 45px rgba(0,0,0,.08);
 
 
-    transition:
-        0.3s;
+    transition:.25s;
 
 }
 
 
+
 .asset-card:hover {
 
-    transform:
-        translateY(-10px);
+    transform:translateY(-10px);
 
 }
 
@@ -284,7 +322,7 @@ header {
 
     width:100%;
 
-    height:200px;
+    height:220px;
 
     object-fit:cover;
 
@@ -294,7 +332,7 @@ header {
 
 .card-content {
 
-    padding:25px;
+    padding:30px;
 
 }
 
@@ -302,7 +340,7 @@ header {
 
 .card-content h2 {
 
-    font-size:32px;
+    font-size:34px;
 
     color:#4338ca;
 
@@ -312,11 +350,11 @@ header {
 
 .card-content p {
 
-    margin-top:12px;
-
-    font-size:20px;
+    margin-top:15px;
 
     color:#64748b;
+
+    font-size:22px;
 
 }
 
@@ -328,14 +366,14 @@ header {
 
     width:100%;
 
-    margin-top:20px;
+    margin-top:25px;
 
     padding:18px;
 
 
     border:none;
 
-    border-radius:30px;
+    border-radius:35px;
 
 
     background:#6366f1;
@@ -343,11 +381,12 @@ header {
     color:white;
 
 
+    font-size:24px;
+
     cursor:pointer;
 
-    font-size:22px;
-
 }
+
 
 
 .download:hover {
@@ -369,20 +408,22 @@ header {
 }
 
 
+
 .loading h2 {
 
-    font-size:40px;
+    font-size:42px;
 
     color:#4338ca;
 
 }
 
 
+
 .loading p {
 
     margin-top:15px;
 
-    font-size:22px;
+    font-size:24px;
 
     color:#64748b;
 
@@ -398,7 +439,7 @@ footer {
 
     padding:50px;
 
-    font-size:20px;
+    font-size:22px;
 
     color:#64748b;
 
@@ -408,21 +449,12 @@ footer {
 
 /* MOBILE */
 
-@media(max-width:700px) {
+@media(max-width:800px) {
 
 
     header {
 
         flex-direction:column;
-
-        gap:25px;
-
-    }
-
-
-    .logo {
-
-        font-size:34px;
 
     }
 
@@ -434,25 +466,20 @@ footer {
     }
 
 
-    .hero h1 {
+    .upload-btn {
 
-        font-size:42px;
+        width:100%;
 
-    }
-
-
-    .hero p {
-
-        font-size:20px;
+        text-align:center;
 
     }
 
 
     .categories button {
 
-        font-size:18px;
+        min-width:120px;
 
-        min-width:110px;
+        font-size:18px;
 
     }
 
