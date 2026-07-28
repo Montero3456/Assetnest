@@ -1,108 +1,148 @@
 @font-face {
     font-family: "BlockCraft";
     src: url("./fonts/BlockCraft.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
 }
 
 
 * {
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:"BlockCraft", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "BlockCraft", Arial, sans-serif;
 }
 
 
 body {
-
-    min-height:100vh;
+    min-height: 100vh;
 
     background:
-    linear-gradient(
-        135deg,
-        #eef2ff,
-        #ffffff,
-        #dbeafe
-    );
+        linear-gradient(
+            135deg,
+            #eef2ff,
+            #ffffff,
+            #dbeafe
+        );
 
-    color:#1e293b;
+    color: #1e293b;
 
+    letter-spacing: 0.5px;
 }
 
 
 
+/* HEADER */
+
 header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding:25px 8%;
+    padding: 28px 8%;
 
     background:
-    rgba(255,255,255,.75);
+        rgba(255,255,255,0.75);
 
-    backdrop-filter:blur(15px);
+    backdrop-filter: blur(20px);
 
+    border-bottom:
+        1px solid rgba(0,0,0,0.05);
+
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 
 
 .logo {
 
-    font-size:30px;
+    font-size: 42px;
 
-    color:#6366f1;
+    color: #6366f1;
+
+    text-shadow:
+        0 5px 15px rgba(99,102,241,0.25);
 
 }
 
 
+
+/* SEARCH */
 
 #search {
 
-    width:40%;
+    width: 42%;
 
-    padding:14px 20px;
+    height: 60px;
 
-    border:none;
+    padding:
+        15px 28px;
 
-    border-radius:30px;
+    border: none;
 
-    outline:none;
+    outline: none;
 
-    font-size:16px;
+    border-radius: 35px;
+
+    background: white;
+
+    font-size: 22px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.08);
 
 }
 
 
+
+/* UPLOAD BUTTON */
 
 .upload-btn {
 
+    text-decoration: none;
+
+    color: white;
+
+    font-size: 24px;
+
+    padding:
+        18px 38px;
+
+    border-radius: 35px;
+
+
     background:
-    linear-gradient(
-        135deg,
-        #6366f1,
-        #8b5cf6
-    );
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #8b5cf6
+        );
 
-    color:white;
 
-    padding:12px 25px;
+    transition: 0.25s;
 
-    border-radius:30px;
+}
 
-    text-decoration:none;
+
+.upload-btn:hover {
+
+    transform:
+        translateY(-5px);
 
 }
 
 
 
+/* HERO */
+
 .hero {
 
-    text-align:center;
+    text-align: center;
 
-    padding:80px 20px;
+    padding:
+        100px 20px;
 
 }
 
@@ -110,9 +150,12 @@ header {
 
 .hero h1 {
 
-    font-size:42px;
+    font-size: 64px;
 
-    color:#312e81;
+    line-height: 1.15;
+
+    color:
+        #312e81;
 
 }
 
@@ -120,15 +163,18 @@ header {
 
 .hero p {
 
-    margin-top:15px;
+    margin-top: 25px;
 
-    font-size:18px;
+    font-size: 26px;
 
-    color:#64748b;
+    color:
+        #64748b;
 
 }
 
 
+
+/* CATEGORY BUTTONS */
 
 .categories {
 
@@ -138,7 +184,7 @@ header {
 
     flex-wrap:wrap;
 
-    gap:15px;
+    gap:20px;
 
 }
 
@@ -146,50 +192,117 @@ header {
 
 .categories button {
 
-    padding:12px 22px;
+    min-width:140px;
+
+    padding:
+        18px 35px;
 
     border:none;
 
-    border-radius:25px;
+    border-radius:35px;
 
     background:white;
 
     cursor:pointer;
 
+    font-size:22px;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.08);
+
+    transition:0.25s;
+
 }
 
 
+.categories button:hover {
+
+    background:#6366f1;
+
+    color:white;
+
+    transform:
+        translateY(-4px);
+
+}
+
+
+
+/* ASSET GRID */
 
 .asset-grid {
 
     width:85%;
 
-    margin:50px auto;
+    margin:
+        60px auto;
+
 
     display:grid;
 
     grid-template-columns:
-    repeat(auto-fit,minmax(280px,1fr));
-
-    gap:25px;
-
-}
+        repeat(auto-fit,minmax(300px,1fr));
 
 
-
-.loading {
-
-    text-align:center;
-
-    padding:80px;
+    gap:30px;
 
 }
 
 
 
-.loading h2 {
+/* ASSET CARDS */
 
-    font-size:28px;
+.asset-card {
+
+    background:white;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.08);
+
+
+    transition:
+        0.3s;
+
+}
+
+
+.asset-card:hover {
+
+    transform:
+        translateY(-10px);
+
+}
+
+
+
+.asset-card img {
+
+    width:100%;
+
+    height:200px;
+
+    object-fit:cover;
+
+}
+
+
+
+.card-content {
+
+    padding:25px;
+
+}
+
+
+
+.card-content h2 {
+
+    font-size:32px;
 
     color:#4338ca;
 
@@ -197,54 +310,150 @@ header {
 
 
 
-.loading p {
+.card-content p {
 
-    margin-top:10px;
+    margin-top:12px;
+
+    font-size:20px;
 
     color:#64748b;
 
 }
 
 
+
+/* DOWNLOAD */
+
+.download {
+
+    width:100%;
+
+    margin-top:20px;
+
+    padding:18px;
+
+
+    border:none;
+
+    border-radius:30px;
+
+
+    background:#6366f1;
+
+    color:white;
+
+
+    cursor:pointer;
+
+    font-size:22px;
+
+}
+
+
+.download:hover {
+
+    background:#4f46e5;
+
+}
+
+
+
+/* LOADING */
+
+.loading {
+
+    text-align:center;
+
+    padding:90px 20px;
+
+}
+
+
+.loading h2 {
+
+    font-size:40px;
+
+    color:#4338ca;
+
+}
+
+
+.loading p {
+
+    margin-top:15px;
+
+    font-size:22px;
+
+    color:#64748b;
+
+}
+
+
+
+/* FOOTER */
 
 footer {
 
     text-align:center;
 
-    padding:40px;
+    padding:50px;
+
+    font-size:20px;
 
     color:#64748b;
 
 }
-/* BlockCraft text size adjustments */
 
-.upload-btn {
-    font-size: 20px;
-    padding: 14px 30px;
-}
 
-.categories button {
-    font-size: 18px;
-    padding: 14px 26px;
-}
 
-#search {
-    font-size: 18px;
-}
+/* MOBILE */
 
-.logo {
-    font-size: 36px;
-}
+@media(max-width:700px) {
 
-.hero h1 {
-    font-size: 50px;
-}
 
-.hero p {
-    font-size: 22px;
-}
+    header {
 
-.download {
-    font-size: 18px;
-    padding: 14px;
+        flex-direction:column;
+
+        gap:25px;
+
+    }
+
+
+    .logo {
+
+        font-size:34px;
+
+    }
+
+
+    #search {
+
+        width:100%;
+
+    }
+
+
+    .hero h1 {
+
+        font-size:42px;
+
+    }
+
+
+    .hero p {
+
+        font-size:20px;
+
+    }
+
+
+    .categories button {
+
+        font-size:18px;
+
+        min-width:110px;
+
+    }
+
 }
