@@ -483,4 +483,31 @@ footer {
 
     }
 
+}/* Smaller buttons while keeping BlockCraft text size */
+
+.upload-btn {
+    font-size: 22px;
+    padding: 12px 26px;
+    border-radius: 30px;
+}
+
+
+.categories button {
+    min-width: 110px;
+    padding: 12px 22px;
+    font-size: 20px;
+    border-radius: 25px;
+}
+
+
+.download {
+    padding: 14px;
+    font-size: 20px;
+    border-radius: 25px;
+}
+
+
+.upload-box button {
+    padding: 15px;
+    font-size: 20px;
 }
