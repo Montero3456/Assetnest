@@ -13,7 +13,7 @@ uploadButton.addEventListener("click", async () => {
     if (!title || !description || !file) {
 
         uploadStatus.textContent =
-            "Please complete all fields.";
+            "Please fill out all fields and choose a file.";
 
         return;
 
@@ -24,48 +24,87 @@ uploadButton.addEventListener("click", async () => {
         "Uploading file...";
 
 
-    const fileName =
-        `${Date.now()}-${file.name}`;
+    try {
+
+        // Create unique file name
+        const fileName =
+            `${Date.now()}-${file.name}`;
 
 
-    const { data, error } =
-        await supabaseClient
-            .storage
-            .from("assets")
-            .upload(fileName, file);
+        // Upload file to Supabase Storage
+        const { data: storageData, error: storageError } =
+            await supabaseClient
+                .storage
+                .from("assets")
+                .upload(fileName, file);
 
 
 
-    if (error) {
+        if (storageError) {
+
+            throw storageError;
+
+        }
+
+
+
+        // Get public download URL
+        const { data: urlData } =
+            supabaseClient
+                .storage
+                .from("assets")
+                .getPublicUrl(fileName);
+
+
+
+        const fileUrl = urlData.publicUrl;
+
+
+
+        // Save asset information to database
+        const { error: databaseError } =
+            await supabaseClient
+                .from("assets")
+                .insert([
+
+                    {
+                        title: title,
+                        description: description,
+                        category: category,
+                        file_url: fileUrl,
+                        file_name: fileName
+                    }
+
+                ]);
+
+
+
+        if (databaseError) {
+
+            throw databaseError;
+
+        }
+
+
+
+        uploadStatus.textContent =
+            "Upload successful!";
+
+
+        // Clear form
+        document.getElementById("assetTitle").value = "";
+        document.getElementById("assetDescription").value = "";
+        document.getElementById("assetFile").value = "";
+
+
+    } catch (error) {
 
         console.error(error);
 
-        uploadStatus.textContent =
-            "Upload failed.";
 
-        return;
+        uploadStatus.textContent =
+            "Upload failed: " + error.message;
 
     }
-
-
-    const { data: urlData } =
-        supabaseClient
-            .storage
-            .from("assets")
-            .getPublicUrl(fileName);
-
-
-
-    console.log({
-        title,
-        description,
-        category,
-        fileUrl: urlData.publicUrl
-    });
-
-
-    uploadStatus.textContent =
-        "File uploaded successfully!";
-
 
 });
