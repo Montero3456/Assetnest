@@ -1,70 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>AssetNest</title>
 
-    <!-- Google Font -->
+    <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- CSS -->
+
+    <!-- Website Style -->
     <link rel="stylesheet" href="styles.css">
+
 </head>
+
+
 <body>
 
+
 <header>
+
 
     <div class="logo">
         AssetNest
     </div>
 
-    <input
-        type="text"
+
+    <input 
         id="search"
-        placeholder="Search assets..."
+        type="text"
+        placeholder="Search Roblox assets..."
     >
+
 
     <a href="upload.html" class="upload-btn">
         Upload
     </a>
 
+
 </header>
+
+
 
 <main>
 
-    <section class="hero">
 
-        <h1>
-            Discover Roblox Assets
-        </h1>
+<section class="hero">
 
-        <p>
-            Share and download .rbxm and .rbxl files instantly.
-        </p>
 
-    </section>
+    <h1>
+        Roblox Assets Made Simple
+    </h1>
 
-    <section class="categories">
 
-        <button>Models</button>
-        <button>Scripts</button>
-        <button>Maps</button>
-        <button>UI</button>
-        <button>Plugins</button>
-        <button>Vehicles</button>
+    <p>
+        Upload, share, and download RBXM and RBXL files instantly.
+    </p>
 
-    </section>
 
-    <section id="assetGrid" class="asset-grid">
+</section>
 
-        <!-- Assets will appear here -->
 
-    </section>
+
+
+<section class="categories">
+
+
+    <button>
+        Models
+    </button>
+
+
+    <button>
+        Maps
+    </button>
+
+
+    <button>
+        Scripts
+    </button>
+
+
+    <button>
+        UI
+    </button>
+
+
+    <button>
+        Vehicles
+    </button>
+
+
+    <button>
+        Other
+    </button>
+
+
+</section>
+
+
+
+
+
+<section>
+
+    <div id="assetGrid" class="asset-grid">
+
+        <div style="
+            grid-column:1/-1;
+            text-align:center;
+            padding:80px;
+            color:#64748B;
+        ">
+
+            <h2>
+                Loading assets...
+            </h2>
+
+            <p>
+                Connecting to AssetNest database
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
 
 </main>
+
+
+
 
 <footer>
 
@@ -74,7 +150,22 @@
 
 </footer>
 
+
+
+
+
+<!-- Supabase Library -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<!-- Supabase Connection -->
+<script src="supabase.js"></script>
+
+
+<!-- Website Logic -->
 <script src="script.js"></script>
 
+
 </body>
+
 </html>
