@@ -1,6 +1,8 @@
 @font-face {
     font-family: "BlockCraft";
     src: url("BlockCraft.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
 }
 
 
@@ -15,7 +17,15 @@ body {
 
     font-family: "BlockCraft", Arial, sans-serif;
 
-    background: #0f172a;
+    background: linear-gradient(
+        135deg,
+        #0f172a,
+        #312e81,
+        #6366f1
+    );
+
+    background-attachment: fixed;
+
     color: white;
 }
 
@@ -31,7 +41,9 @@ header {
 
     padding: 20px 40px;
 
-    background: #111827;
+    background: rgba(15, 23, 42, 0.85);
+
+    backdrop-filter: blur(10px);
 }
 
 
@@ -60,13 +72,14 @@ header {
 }
 
 
+
 /* BUTTONS */
 
 button,
 .upload-btn,
 .download {
 
-    font-family: inherit;
+    font-family: "BlockCraft", Arial, sans-serif;
 
     cursor: pointer;
 
@@ -76,7 +89,11 @@ button,
 
     color: white;
 
-    background: #6366f1;
+    background: linear-gradient(
+        135deg,
+        #6366f1,
+        #8b5cf6
+    );
 
     padding: 10px 18px;
 
@@ -91,7 +108,11 @@ button:hover,
 .upload-btn:hover,
 .download:hover {
 
-    background: #4f46e5;
+    background: linear-gradient(
+        135deg,
+        #8b5cf6,
+        #ec4899
+    );
 
     transform: translateY(-2px);
 
@@ -123,7 +144,7 @@ button:hover,
 
     font-size: 1.1rem;
 
-    opacity: 0.85;
+    opacity: 0.9;
 
 }
 
@@ -153,7 +174,10 @@ button:hover,
 
     display: grid;
 
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(260px, 1fr)
+    );
 
     gap: 25px;
 
@@ -163,21 +187,23 @@ button:hover,
 
 
 
-/* ASSET CARD */
+/* ASSET CARDS */
 
 .asset-card {
 
-    background: #1e293b;
+    background: rgba(30, 41, 59, 0.9);
 
     border-radius: 20px;
 
     padding: 25px;
 
-    min-height: 280px;
+    min-height: 300px;
 
     display: flex;
 
     flex-direction: column;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
 
 }
 
@@ -204,9 +230,11 @@ button:hover,
 
 .asset-card p {
 
+    font-size: 1rem;
+
     line-height: 1.5;
 
-    font-size: 1rem;
+    margin-bottom: 15px;
 
 }
 
@@ -216,11 +244,11 @@ button:hover,
 
 .download {
 
-    margin-top: auto;
+    display: block;
 
     text-align: center;
 
-    display: block;
+    margin-top: auto;
 
 }
 
@@ -246,7 +274,7 @@ footer {
 
     padding: 30px;
 
-    opacity: 0.7;
+    opacity: 0.8;
 
 }
 
@@ -255,6 +283,7 @@ footer {
 /* MOBILE */
 
 @media(max-width:700px) {
+
 
     header {
 
@@ -272,16 +301,16 @@ footer {
     }
 
 
-    .asset-grid {
+    .hero h1 {
 
-        padding: 20px;
+        font-size: 2rem;
 
     }
 
 
-    .hero h1 {
+    .asset-grid {
 
-        font-size: 2rem;
+        padding: 20px;
 
     }
 
